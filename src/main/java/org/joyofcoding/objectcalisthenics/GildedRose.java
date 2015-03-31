@@ -28,12 +28,7 @@ public class GildedRose {
     						.get(i)
     						.getName()
     						.equals("Backstage passes to a TAFKAL80ETC concert")) {
-    			if (items.get(i).getQuality() > 0) {
-    				if (!items.get(i).getName()
-    						.equals("Sulfuras, Hand of Ragnaros")) {
-    					items.get(i).setQuality(items.get(i).getQuality() - 1);
-    				}
-    			}
+    			             checkQualityLow(items.get(i), "Sulfuras, Hand of Ragnaros");
     		} else {
     			if (items.get(i).getQuality() < 50) {
     				items.get(i).setQuality(items.get(i).getQuality() + 1);
@@ -89,5 +84,44 @@ public class GildedRose {
     		}
     	}
     }
-
+    
+    public boolean checkQualityLow(Item item, String name) {
+        ItemQuality itemQuality = item.getItemQuality();
+        if(itemQuality.getQuality() > 0) {
+            if(checkName(item, name)) {
+                itemQuality.decreaseQuality();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean checkQualityHigh(Item item, String name) {
+        ItemQuality itemQuality = item.getItemQuality();
+        if(itemQuality.getQuality() < 50) {
+            if(checkName(item, name)) {
+                itemQuality.increaseQuality();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean checkName(Item item, String name) {
+        String itemName = item.getName();
+        if(itemName.equals(name)) {
+            return true;
+        }
+        return false;
+    }
+    
+    public void decreaseQuality(Item item) {
+        ItemQuality itemQuality = item.getItemQuality();
+        itemQuality.decreaseQuality();
+    }
+ 
+    public void increaseQuality(Item item) {
+        ItemQuality itemQuality = item.getItemQuality();
+        itemQuality.increaseQuality();
+    }
 }
