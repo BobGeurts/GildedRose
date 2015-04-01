@@ -27,4 +27,8 @@ public class ItemQuality {
     public void decreaseQuality() {
         quality--;
     } 
+    
+    public void nullQuality() {
+        quality = 0;
+    }
 }
