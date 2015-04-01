@@ -16,11 +16,11 @@ public class ItemSellIn {
         this.sellIn = sellIn;
     }
     
-    public int getItemSellIn() {
+    public int getSellIn() {
         return sellIn;
     }
     
-    public void descreaseSellIn() {
+    public void decreaseSellIn() {
         sellIn--;
     }
 }

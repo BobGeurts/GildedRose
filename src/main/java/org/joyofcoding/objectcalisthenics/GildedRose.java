@@ -110,11 +110,11 @@ public class GildedRose {
 
     public void decreaseSellIn(Item item) {
         ItemSellIn itemSellIn = item.getItemSellIn();
-        itemSellIn.descreaseSellIn();
+        itemSellIn.decreaseSellIn();
     }
 
     public boolean checkSellIn(Item item, int height) {
         ItemSellIn itemSellIn = item.getItemSellIn();
-        return itemSellIn.getItemSellIn() < height;
+        return itemSellIn.getSellIn() < height;
     }
 }
