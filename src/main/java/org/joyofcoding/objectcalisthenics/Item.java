@@ -26,6 +26,10 @@ public class Item {
         return itemDescription.getItemSellIn();
     }
 
+    public boolean equalName(String name) {
+        return this.name.equals(name);
+    }
+    
     public void update() {
 
     }

@@ -24,14 +24,17 @@ public class GildedRose {
     public void updateQuality(List<Item> list) {
         List<Item> items = list;
         for (Item item : items) {
-            if (!checkName(item, "Aged Brie")
-                    && !checkName(item, "Backstage passes to a TAFKAL80ETC concert")) {
-                checkQualityLow(item, "Sulfuras, Hand of Ragnaros");
+            if (!item.equalName("Aged Brie") && !item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
+                if (checkQualityLow(item)) {
+                    if (!item.equalName("Sulfuras, Hand of Ragnaros")) {
+                        decreaseQuality(item);
+                    }
+                }
             } else {
-                if (checkQualityHigh(item, null)) {
+                if (checkQualityHigh(item)) {
                     increaseQuality(item);
 
-                    if (checkName(item, "Backstage passes to a TAFKAL80ETC concert")) {
+                    if (item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
                         if (checkSellIn(item, 11)) {
                             if (checkQualityHigh(item)) {
                                 increaseQuality(item);
@@ -47,15 +50,17 @@ public class GildedRose {
                 }
             }
 
-            if (!checkName(item, "Sulfuras, Hand of Ragnaros")) {
+            if (!item.equalName("Sulfuras, Hand of Ragnaros")) {
                 decreaseSellIn(item);
             }
 
             if (checkSellIn(item, 0)) {
-                if (!checkName(item, "Aged Brie")) {
-                    if (!checkName(item, "Backstage passes to a TAFKAL80ETC concert")) {
-                        if (checkQualityLow(item) && !checkName(item, "Sulfuras, Hand of Ragnaros")) {
+                if (!item.equalName("Aged Brie")) {
+                    if (!item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
+                        if (checkQualityLow(item)) {
+                            if (!item.equalName("Sulfuras, Hand of Ragnaros")) {
                                 decreaseQuality(item);
+                            }
                         }
                     } else {
                         nullQuality(item);
@@ -69,15 +74,6 @@ public class GildedRose {
         }
     }
 
-    public boolean checkQualityLow(Item item, String name) {
-        ItemQuality itemQuality = item.getItemQuality();
-        if (itemQuality.getQuality() > 0 && checkName(item, name)) {
-            itemQuality.decreaseQuality();
-            return true;
-        }
-        return false;
-    }
-    
     public boolean checkQualityLow(Item item) {
         ItemQuality itemQuality = item.getItemQuality();
         if (itemQuality.getQuality() > 0) {
@@ -87,22 +83,9 @@ public class GildedRose {
         return false;
     }
 
-    public boolean checkQualityHigh(Item item, String name) {
-        ItemQuality itemQuality = item.getItemQuality();
-        if (itemQuality.getQuality() < 50 && checkName(item, name)) {
-                itemQuality.increaseQuality();
-                return true;
-        }
-        return false;
-    }
-    
     public boolean checkQualityHigh(Item item) {
         ItemQuality itemQuality = item.getItemQuality();
-        if (itemQuality.getQuality() < 50) {
-                itemQuality.increaseQuality();
-                return true;
-        }
-        return false;
+        return (itemQuality.getQuality() < 50);
     }
 
     public boolean checkName(Item item, String name) {
@@ -119,17 +102,17 @@ public class GildedRose {
         ItemQuality itemQuality = item.getItemQuality();
         itemQuality.increaseQuality();
     }
-    
+
     public void nullQuality(Item item) {
         ItemQuality itemQuality = item.getItemQuality();
         itemQuality.nullQuality();
     }
-    
+
     public void decreaseSellIn(Item item) {
         ItemSellIn itemSellIn = item.getItemSellIn();
         itemSellIn.descreaseSellIn();
     }
-    
+
     public boolean checkSellIn(Item item, int height) {
         ItemSellIn itemSellIn = item.getItemSellIn();
         return itemSellIn.getItemSellIn() < height;
