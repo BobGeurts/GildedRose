@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.102" errors="0" skipped="0" tests="4" name="org.joyofcoding.objectcalisthenics.GildedRoseTest">
+<testsuite failures="0" time="0.104" errors="0" skipped="0" tests="4" name="org.joyofcoding.objectcalisthenics.GildedRoseTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_40\jre\bin"/>
@@ -62,8 +62,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.034" classname="org.joyofcoding.objectcalisthenics.GildedRoseTest" name="after_one_day"/>
-  <testcase time="0.012" classname="org.joyofcoding.objectcalisthenics.GildedRoseTest" name="backstage_pass_golden_copy"/>
-  <testcase time="0.002" classname="org.joyofcoding.objectcalisthenics.GildedRoseTest" name="after_three_days"/>
+  <testcase time="0.035" classname="org.joyofcoding.objectcalisthenics.GildedRoseTest" name="after_one_day"/>
   <testcase time="0.004" classname="org.joyofcoding.objectcalisthenics.GildedRoseTest" name="after_a_shitload_of_days"/>
+  <testcase time="0.002" classname="org.joyofcoding.objectcalisthenics.GildedRoseTest" name="after_three_days"/>
+  <testcase time="0.011" classname="org.joyofcoding.objectcalisthenics.GildedRoseTest" name="backstage_pass_golden_copy"/>
 </testsuite>

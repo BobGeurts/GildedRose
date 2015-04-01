@@ -26,21 +26,14 @@ public class GildedRose {
         for (Item item : items) {
             if (!item.equalName("Aged Brie")
                     && !item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.checkQualityLow() && !item.equalName("Sulfuras, Hand of Ragnaros")) {
-                    item.decreaseQuality();
-                }
+                LowRaganaros(item);
             } else {
                 if (item.checkQualityHigh()) {
                     item.increaseQuality();
 
                     if (item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (item.checkSellIn(11) && item.checkQualityHigh()) {
-                            item.increaseQuality();
-                        }
-
-                        if (item.checkSellIn(6) && item.checkQualityHigh()) {
-                            item.increaseQuality();
-                        }
+                        SellQuality(item, 11);
+                        SellQuality(item, 6);
                     }
                 }
             }
@@ -52,18 +45,29 @@ public class GildedRose {
             if (item.checkSellIn(0)) {
                 if (!item.equalName("Aged Brie")) {
                     if (!item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (item.checkQualityLow() && !item.equalName("Sulfuras, Hand of Ragnaros")) {
-                                item.decreaseQuality();                           
-                        }
+                        LowRaganaros(item);
                     } else {
                         item.nullQuality();
                     }
                 } else {
-                    if (item.checkQualityHigh()) {
-                        item.increaseQuality();
-                    }
+                    HighQuality(item);
                 }
             }
         }
+    }
+
+    public void LowRaganaros(Item item) {
+        if (item.checkQualityLow() && !item.equalName("Sulfuras, Hand of Ragnaros"))
+            item.decreaseQuality();
+    }
+
+    public void SellQuality(Item item, int height) {
+        if (item.checkSellIn(height) && item.checkQualityHigh()) 
+            item.increaseQuality();
+    }
+
+    public void HighQuality(Item item) {
+        if (item.checkQualityHigh())
+            item.increaseQuality();
     }
 }
