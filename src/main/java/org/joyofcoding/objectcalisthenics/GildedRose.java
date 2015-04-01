@@ -24,13 +24,8 @@ public class GildedRose {
     public void updateQuality(List<Item> list) {
         List<Item> items = list;
         for (Item item : items) {
-            if (!item.equalName("Aged Brie")
-                    && !item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                LowRaganaros(item);
-            } else {
-                if (item.checkQualityHigh()) {
-                    item.increaseQuality();
-
+            if (item.equalName("Aged Brie") || !ETCConcert(item)) {
+                if (HighQuality(item)) {
                     if (item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
                         SellQuality(item, 11);
                         SellQuality(item, 6);
@@ -44,11 +39,8 @@ public class GildedRose {
 
             if (item.checkSellIn(0)) {
                 if (!item.equalName("Aged Brie")) {
-                    if (!item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                        LowRaganaros(item);
-                    } else {
+                    if (!ETCConcert(item))
                         item.nullQuality();
-                    }
                 } else {
                     HighQuality(item);
                 }
@@ -66,8 +58,19 @@ public class GildedRose {
             item.increaseQuality();
     }
 
-    public void HighQuality(Item item) {
-        if (item.checkQualityHigh())
-            item.increaseQuality();
+    public boolean HighQuality(Item item) {
+        if (item.checkQualityHigh()) {           
+           item.increaseQuality();
+           return true;
+        }
+        return false;
+    }
+    
+    public boolean ETCConcert(Item item) {
+        if (!item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
+                LowRaganaros(item);
+                return true;
+        } 
+        return false;
     }
 }
