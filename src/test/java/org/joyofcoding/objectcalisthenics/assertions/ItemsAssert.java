@@ -34,7 +34,7 @@ public class ItemsAssert extends
 	public ItemsAssert containsOnlyItemQualities(Integer... qualities) {
 		isNotNull();
 		
-		Iterable<Integer> actualItemQualities = extractProperty("quality", Integer.class)
+		Iterable<Integer> actualItemQualities = extractProperty("itemDescription.itemQuality.quality", Integer.class)
 				.from(actual);
         Assertions.assertThat(actualItemQualities).containsOnly(qualities);
         
@@ -44,7 +44,7 @@ public class ItemsAssert extends
 	public ItemsAssert containsOnlyItemSellIns(Integer... sellIns) {
 		isNotNull();
 		
-		Iterable<Integer> actualItemSellIns = extractProperty("sellIn", Integer.class)
+		Iterable<Integer> actualItemSellIns = extractProperty("itemDescription.itemSellIn.sellIn", Integer.class)
 				.from(actual);
 		Assertions.assertThat(actualItemSellIns).containsOnly(sellIns);
 		
