@@ -24,97 +24,46 @@ public class GildedRose {
     public void updateQuality(List<Item> list) {
         List<Item> items = list;
         for (Item item : items) {
-            if (!item.equalName("Aged Brie") && !item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                if (checkQualityLow(item)) {
-                    if (!item.equalName("Sulfuras, Hand of Ragnaros")) {
-                        decreaseQuality(item);
-                    }
+            if (!item.equalName("Aged Brie")
+                    && !item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
+                if (item.checkQualityLow() && !item.equalName("Sulfuras, Hand of Ragnaros")) {
+                    item.decreaseQuality();
                 }
             } else {
-                if (checkQualityHigh(item)) {
-                    increaseQuality(item);
+                if (item.checkQualityHigh()) {
+                    item.increaseQuality();
 
                     if (item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (checkSellIn(item, 11)) {
-                            if (checkQualityHigh(item)) {
-                                increaseQuality(item);
-                            }
+                        if (item.checkSellIn(11) && item.checkQualityHigh()) {
+                            item.increaseQuality();
                         }
 
-                        if (checkSellIn(item, 6)) {
-                            if (checkQualityHigh(item)) {
-                                increaseQuality(item);
-                            }
+                        if (item.checkSellIn(6) && item.checkQualityHigh()) {
+                            item.increaseQuality();
                         }
                     }
                 }
             }
 
             if (!item.equalName("Sulfuras, Hand of Ragnaros")) {
-                decreaseSellIn(item);
+                item.decreaseSellIn();
             }
 
-            if (checkSellIn(item, 0)) {
+            if (item.checkSellIn(0)) {
                 if (!item.equalName("Aged Brie")) {
                     if (!item.equalName("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (checkQualityLow(item)) {
-                            if (!item.equalName("Sulfuras, Hand of Ragnaros")) {
-                                decreaseQuality(item);
-                            }
+                        if (item.checkQualityLow() && !item.equalName("Sulfuras, Hand of Ragnaros")) {
+                                item.decreaseQuality();                           
                         }
                     } else {
-                        nullQuality(item);
+                        item.nullQuality();
                     }
                 } else {
-                    if (checkQualityHigh(item)) {
-                        increaseQuality(item);
+                    if (item.checkQualityHigh()) {
+                        item.increaseQuality();
                     }
                 }
             }
         }
-    }
-
-    public boolean checkQualityLow(Item item) {
-        ItemQuality itemQuality = item.getItemQuality();
-        if (itemQuality.getQuality() > 0) {
-            itemQuality.decreaseQuality();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkQualityHigh(Item item) {
-        ItemQuality itemQuality = item.getItemQuality();
-        return (itemQuality.getQuality() < 50);
-    }
-
-    public boolean checkName(Item item, String name) {
-        String itemName = item.getName();
-        return itemName.equals(name);
-    }
-
-    public void decreaseQuality(Item item) {
-        ItemQuality itemQuality = item.getItemQuality();
-        itemQuality.decreaseQuality();
-    }
-
-    public void increaseQuality(Item item) {
-        ItemQuality itemQuality = item.getItemQuality();
-        itemQuality.increaseQuality();
-    }
-
-    public void nullQuality(Item item) {
-        ItemQuality itemQuality = item.getItemQuality();
-        itemQuality.nullQuality();
-    }
-
-    public void decreaseSellIn(Item item) {
-        ItemSellIn itemSellIn = item.getItemSellIn();
-        itemSellIn.decreaseSellIn();
-    }
-
-    public boolean checkSellIn(Item item, int height) {
-        ItemSellIn itemSellIn = item.getItemSellIn();
-        return itemSellIn.getSellIn() < height;
     }
 }

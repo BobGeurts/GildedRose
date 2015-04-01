@@ -14,23 +14,35 @@ public class Item {
         return name;
     }
 
-    public ItemDescription getItemDescription() {
-        return itemDescription;
+    public boolean checkQualityLow() {
+        return itemDescription.checkQualityLow();
     }
 
-    public ItemQuality getItemQuality() {
-        return itemDescription.getItemQuality();
+    public boolean checkQualityHigh() {
+        return itemDescription.checkQualityHigh();
     }
 
-    public ItemSellIn getItemSellIn() {
-        return itemDescription.getItemSellIn();
+    public void decreaseQuality() {
+        itemDescription.decreaseQuality();
+    }
+
+    public void increaseQuality() {
+        itemDescription.increaseQuality();
+    }
+
+    public void nullQuality() {
+        itemDescription.nullQuality();
+    }
+
+    public void decreaseSellIn() {
+        itemDescription.decreaseSellIn();
+    }
+
+    public boolean checkSellIn(int height) {
+        return itemDescription.checkSellIn(height);
     }
 
     public boolean equalName(String name) {
         return this.name.equals(name);
-    }
-    
-    public void update() {
-
     }
 }

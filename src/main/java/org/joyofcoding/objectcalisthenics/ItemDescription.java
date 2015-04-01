@@ -18,11 +18,31 @@ public class ItemDescription {
         itemSellIn = new ItemSellIn(sellIn);
     }
     
-    public ItemQuality getItemQuality() {
-        return itemQuality;
+        public boolean checkQualityLow() {
+        return itemQuality.getQuality() > 0;
     }
-    
-    public ItemSellIn getItemSellIn() {
-        return itemSellIn;
+
+    public boolean checkQualityHigh() {
+        return itemQuality.getQuality() < 50;
+    }
+
+    public void decreaseQuality() {
+        itemQuality.decreaseQuality();
+    }
+
+    public void increaseQuality() {
+        itemQuality.increaseQuality();
+    }
+
+    public void nullQuality() {
+        itemQuality.nullQuality();
+    }
+
+    public void decreaseSellIn() {
+        itemSellIn.decreaseSellIn();
+    }
+
+    public boolean checkSellIn(int height) {
+        return itemSellIn.getSellIn() < height;
     }
 }
