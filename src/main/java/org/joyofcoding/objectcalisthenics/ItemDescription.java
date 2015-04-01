@@ -10,15 +10,24 @@ package org.joyofcoding.objectcalisthenics;
  * @author Bros Laptop
  */
 public class ItemDescription {
+
     private ItemQuality itemQuality;
-    private ItemSellIn  itemSellIn;   
-    
+    private ItemSellIn itemSellIn;
+
     public ItemDescription(int quality, int sellIn) {
         itemQuality = new ItemQuality(quality);
         itemSellIn = new ItemSellIn(sellIn);
     }
+
+    public ItemQuality getItemQuality() {
+        return itemQuality;
+    }
     
-        public boolean checkQualityLow() {
+    public ItemSellIn getItemSellIn() {
+        return itemSellIn;
+    }
+    
+    public boolean checkQualityLow() {
         return itemQuality.getQuality() > 0;
     }
 

@@ -9,6 +9,10 @@ public class Item {
         this.name = name;
         itemDescription = new ItemDescription(quality, sellIn);
     }
+    
+    public ItemDescription getItemDescription() {
+       return itemDescription;
+    }
 
     public String getName() {
         return name;
