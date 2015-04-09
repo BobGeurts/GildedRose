@@ -1,7 +1,6 @@
 package org.joyofcoding.objectcalisthenics;
 
 public class Item {
-
     private String name;
     private ItemDescription itemDescription;
 
